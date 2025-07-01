@@ -1,7 +1,8 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Book, Calendar, HelpCircle, Book as BookIcon } from 'lucide-react';
+import { Book, Calendar, HelpCircle, Book as BookIcon, Settings } from 'lucide-react';
+import { useBibleChallenge } from '@/hooks/useBibleChallenge';
 
 interface NavigationProps {
   currentView: string;
@@ -9,12 +10,19 @@ interface NavigationProps {
 }
 
 const Navigation = ({ currentView, onViewChange }: NavigationProps) => {
+  const { currentParticipant } = useBibleChallenge();
+  
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: Calendar },
     { id: 'participants', label: 'Participantes', icon: BookIcon },
     { id: 'quiz', label: 'Quiz Diário', icon: HelpCircle },
     { id: 'books', label: 'Livros', icon: Book }
   ];
+
+  // Add admin panel for admin users
+  if (currentParticipant?.isAdmin) {
+    navItems.push({ id: 'admin', label: 'Administração', icon: Settings });
+  }
 
   return (
     <nav className="bg-white shadow-sm border-b">

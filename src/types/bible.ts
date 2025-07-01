@@ -10,6 +10,7 @@ export interface Participant {
   currentChapter: number;
   joinDate: Date;
   lastActivity: Date;
+  isAdmin: boolean;
 }
 
 export interface BibleBook {
@@ -36,6 +37,8 @@ export interface QuizQuestion {
   options: string[];
   correctAnswer: number;
   explanation?: string;
+  createdBy: string;
+  createdAt: Date;
 }
 
 export interface QuizResult {
@@ -47,4 +50,13 @@ export interface QuizResult {
   answers: number[];
   score: number;
   completedAt: Date;
+}
+
+export interface ReadingSchedule {
+  id: string;
+  bookId: string;
+  startDate: Date;
+  isActive: boolean;
+  createdBy: string;
+  createdAt: Date;
 }

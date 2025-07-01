@@ -1,17 +1,13 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useBibleChallenge } from '@/hooks/useBibleChallenge';
 import { Book, Calendar, Check, HelpCircle } from 'lucide-react';
 
 const Dashboard = () => {
-  const { participants, currentParticipant, getParticipantRanking } = useBibleChallenge();
+  const { participants, currentParticipant, getParticipantRanking, getCurrentReading } = useBibleChallenge();
   const ranking = getParticipantRanking();
-
-  const todaysReading = {
-    book: 'Gênesis',
-    chapter: 16,
-    date: new Date().toLocaleDateString('pt-BR')
-  };
+  const currentReading = getCurrentReading();
 
   return (
     <div className="space-y-6">
@@ -24,15 +20,24 @@ const Dashboard = () => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-2xl font-bold text-blue-900">{todaysReading.book} {todaysReading.chapter}</h3>
-              <p className="text-blue-600">{todaysReading.date}</p>
+          {currentReading ? (
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-2xl font-bold text-blue-900">
+                  {currentReading.book.name} {currentReading.chapter}
+                </h3>
+                <p className="text-blue-600">{currentReading.date.toLocaleDateString('pt-BR')}</p>
+              </div>
+              <Badge variant="secondary" className="bg-blue-100 text-blue-800">
+                Capítulo do Dia
+              </Badge>
             </div>
-            <Badge variant="secondary" className="bg-blue-100 text-blue-800">
-              Capítulo do Dia
-            </Badge>
-          </div>
+          ) : (
+            <div className="text-center text-gray-600">
+              <p>Nenhum cronograma de leitura ativo</p>
+              <p className="text-sm">Aguarde o administrador definir o próximo livro</p>
+            </div>
+          )}
         </CardContent>
       </Card>
 
@@ -118,7 +123,6 @@ const Dashboard = () => {
         </Card>
       )}
 
-      {/* Top Participants */}
       <Card>
         <CardHeader>
           <CardTitle className="text-blue-900">Ranking dos Participantes</CardTitle>
