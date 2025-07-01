@@ -9,7 +9,9 @@ export const sampleQuizzes: QuizQuestion[] = [
     question: 'Quantos dias Deus levou para criar o mundo?',
     options: ['5 dias', '6 dias', '7 dias', '8 dias'],
     correctAnswer: 1,
-    explanation: 'Deus criou o mundo em 6 dias e descansou no sétimo dia.'
+    explanation: 'Deus criou o mundo em 6 dias e descansou no sétimo dia.',
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01')
   },
   {
     id: '2',
@@ -18,7 +20,9 @@ export const sampleQuizzes: QuizQuestion[] = [
     question: 'O que Deus criou no primeiro dia?',
     options: ['Os animais', 'A luz', 'As plantas', 'O homem'],
     correctAnswer: 1,
-    explanation: 'No primeiro dia, Deus disse: "Haja luz", e houve luz.'
+    explanation: 'No primeiro dia, Deus disse: "Haja luz", e houve luz.',
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01')
   },
   {
     id: '3',
@@ -27,7 +31,9 @@ export const sampleQuizzes: QuizQuestion[] = [
     question: 'Em que dia Deus criou o homem?',
     options: ['Quinto dia', 'Sexto dia', 'Sétimo dia', 'Primeiro dia'],
     correctAnswer: 1,
-    explanation: 'Deus criou o homem no sexto dia, à sua imagem e semelhança.'
+    explanation: 'Deus criou o homem no sexto dia, à sua imagem e semelhança.',
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01')
   },
   {
     id: '4',
@@ -36,7 +42,9 @@ export const sampleQuizzes: QuizQuestion[] = [
     question: 'Qual é o significado do nome Jesus?',
     options: ['Rei dos reis', 'Filho de Deus', 'O Salvador', 'O Messias'],
     correctAnswer: 2,
-    explanation: 'Jesus significa "O Salvador", pois ele salvará seu povo dos seus pecados.'
+    explanation: 'Jesus significa "O Salvador", pois ele salvará seu povo dos seus pecados.',
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01')
   },
   {
     id: '5',
@@ -45,6 +53,8 @@ export const sampleQuizzes: QuizQuestion[] = [
     question: 'Como Jesus foi concebido?',
     options: ['Naturalmente', 'Por milagre', 'Pelo Espírito Santo', 'Por adoção'],
     correctAnswer: 2,
-    explanation: 'Jesus foi concebido pelo Espírito Santo no ventre de Maria.'
+    explanation: 'Jesus foi concebido pelo Espírito Santo no ventre de Maria.',
+    createdBy: 'system',
+    createdAt: new Date('2024-01-01')
   }
 ];
