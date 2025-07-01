@@ -7,12 +7,12 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { useBibleChallenge } from '@/hooks/useBibleChallenge';
+import { useSupabaseBibleChallenge } from '@/hooks/useSupabaseBibleChallenge';
 import { Settings, Plus, BookOpen, Calendar, HelpCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const AdminPanel = () => {
-  const { bibleBooks, currentParticipant, setActiveBook, createQuiz, activeSchedule } = useBibleChallenge();
+  const { bibleBooks, currentParticipant, setActiveBook, createQuiz, activeSchedule } = useSupabaseBibleChallenge();
   const { toast } = useToast();
   
   const [selectedBook, setSelectedBook] = useState('');
@@ -36,32 +36,22 @@ const AdminPanel = () => {
     );
   }
 
-  const handleBookSelection = () => {
+  const handleBookSelection = async () => {
     if (selectedBook) {
-      setActiveBook(selectedBook);
-      toast({
-        title: "Livro Selecionado!",
-        description: `${bibleBooks.find(b => b.id === selectedBook)?.name} foi definido como livro atual.`,
-      });
+      await setActiveBook(selectedBook);
       setIsScheduleDialogOpen(false);
     }
   };
 
-  const handleCreateQuiz = () => {
+  const handleCreateQuiz = async () => {
     if (selectedBook && selectedChapter && question && options.every(opt => opt.trim())) {
-      createQuiz({
+      await createQuiz({
         bookId: selectedBook,
         chapter: parseInt(selectedChapter),
         question,
         options,
         correctAnswer,
-        explanation,
-        createdBy: currentParticipant.id
-      });
-      
-      toast({
-        title: "Quiz Criado!",
-        description: "Nova pergunta adicionada com sucesso.",
+        explanation
       });
       
       // Reset form

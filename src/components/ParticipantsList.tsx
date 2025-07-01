@@ -5,20 +5,20 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { useBibleChallenge } from '@/hooks/useBibleChallenge';
+import { useSupabaseBibleChallenge } from '@/hooks/useSupabaseBibleChallenge';
 import { Book, Calendar, Check } from 'lucide-react';
 
 const ParticipantsList = () => {
-  const { participants, addParticipant, getParticipantRanking } = useBibleChallenge();
+  const { participants, addParticipant, getParticipantRanking } = useSupabaseBibleChallenge();
   const [newParticipantName, setNewParticipantName] = useState('');
   const [newParticipantEmail, setNewParticipantEmail] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const ranking = getParticipantRanking();
 
-  const handleAddParticipant = () => {
+  const handleAddParticipant = async () => {
     if (newParticipantName.trim() && newParticipantEmail.trim()) {
-      addParticipant(newParticipantName.trim(), newParticipantEmail.trim());
+      await addParticipant(newParticipantName.trim(), newParticipantEmail.trim());
       setNewParticipantName('');
       setNewParticipantEmail('');
       setIsDialogOpen(false);

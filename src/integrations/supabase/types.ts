@@ -9,7 +9,174 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      participants: {
+        Row: {
+          avatar: string | null
+          chapters_completed: number
+          created_at: string
+          current_book: string | null
+          current_chapter: number
+          email: string
+          id: string
+          is_admin: boolean
+          join_date: string
+          last_activity: string
+          name: string
+          total_score: number
+          updated_at: string
+        }
+        Insert: {
+          avatar?: string | null
+          chapters_completed?: number
+          created_at?: string
+          current_book?: string | null
+          current_chapter?: number
+          email: string
+          id?: string
+          is_admin?: boolean
+          join_date?: string
+          last_activity?: string
+          name: string
+          total_score?: number
+          updated_at?: string
+        }
+        Update: {
+          avatar?: string | null
+          chapters_completed?: number
+          created_at?: string
+          current_book?: string | null
+          current_chapter?: number
+          email?: string
+          id?: string
+          is_admin?: boolean
+          join_date?: string
+          last_activity?: string
+          name?: string
+          total_score?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      quiz_questions: {
+        Row: {
+          book_id: string
+          chapter: number
+          correct_answer: number
+          created_at: string
+          created_by: string
+          explanation: string | null
+          id: string
+          options: Json
+          question: string
+        }
+        Insert: {
+          book_id: string
+          chapter: number
+          correct_answer: number
+          created_at?: string
+          created_by: string
+          explanation?: string | null
+          id?: string
+          options: Json
+          question: string
+        }
+        Update: {
+          book_id?: string
+          chapter?: number
+          correct_answer?: number
+          created_at?: string
+          created_by?: string
+          explanation?: string | null
+          id?: string
+          options?: Json
+          question?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_questions_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "participants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      quiz_results: {
+        Row: {
+          answers: Json
+          book_id: string
+          chapter: number
+          completed_at: string
+          id: string
+          participant_id: string
+          questions: Json
+          score: number
+        }
+        Insert: {
+          answers: Json
+          book_id: string
+          chapter: number
+          completed_at?: string
+          id?: string
+          participant_id: string
+          questions: Json
+          score: number
+        }
+        Update: {
+          answers?: Json
+          book_id?: string
+          chapter?: number
+          completed_at?: string
+          id?: string
+          participant_id?: string
+          questions?: Json
+          score?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_results_participant_id_fkey"
+            columns: ["participant_id"]
+            isOneToOne: false
+            referencedRelation: "participants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      reading_schedules: {
+        Row: {
+          book_id: string
+          created_at: string
+          created_by: string
+          id: string
+          is_active: boolean
+          start_date: string
+        }
+        Insert: {
+          book_id: string
+          created_at?: string
+          created_by: string
+          id?: string
+          is_active?: boolean
+          start_date?: string
+        }
+        Update: {
+          book_id?: string
+          created_at?: string
+          created_by?: string
+          id?: string
+          is_active?: boolean
+          start_date?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reading_schedules_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "participants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

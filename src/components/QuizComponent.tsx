@@ -1,8 +1,9 @@
+
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { useBibleChallenge } from '@/hooks/useBibleChallenge';
+import { useSupabaseBibleChallenge } from '@/hooks/useSupabaseBibleChallenge';
 import { HelpCircle, Check, Book } from 'lucide-react';
 
 interface QuizComponentProps {
@@ -12,7 +13,7 @@ interface QuizComponentProps {
 }
 
 const QuizComponent = ({ bookId, chapter, onComplete }: QuizComponentProps) => {
-  const { getQuizForChapter } = useBibleChallenge();
+  const { getQuizForChapter } = useSupabaseBibleChallenge();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<number[]>([]);
   const [showResults, setShowResults] = useState(false);

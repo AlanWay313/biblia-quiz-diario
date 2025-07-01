@@ -7,12 +7,12 @@ import ParticipantsList from '@/components/ParticipantsList';
 import QuizComponent from '@/components/QuizComponent';
 import BooksOverview from '@/components/BooksOverview';
 import AdminPanel from '@/components/AdminPanel';
-import { useBibleChallenge } from '@/hooks/useBibleChallenge';
+import { useSupabaseBibleChallenge } from '@/hooks/useSupabaseBibleChallenge';
 import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
   const [currentView, setCurrentView] = useState('dashboard');
-  const { currentParticipant, completeQuiz, getCurrentReading } = useBibleChallenge();
+  const { currentParticipant, completeQuiz, getCurrentReading, loading } = useSupabaseBibleChallenge();
   const { toast } = useToast();
   const currentReading = getCurrentReading();
 
@@ -25,6 +25,17 @@ const Index = () => {
       });
     }
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Carregando dados...</p>
+        </div>
+      </div>
+    );
+  }
 
   const renderCurrentView = () => {
     switch (currentView) {

@@ -1,11 +1,11 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { useBibleChallenge } from '@/hooks/useBibleChallenge';
+import { useSupabaseBibleChallenge } from '@/hooks/useSupabaseBibleChallenge';
 import { Book, Calendar, Check, HelpCircle } from 'lucide-react';
 
 const Dashboard = () => {
-  const { participants, currentParticipant, getParticipantRanking, getCurrentReading } = useBibleChallenge();
+  const { participants, currentParticipant, getParticipantRanking, getCurrentReading } = useSupabaseBibleChallenge();
   const ranking = getParticipantRanking();
   const currentReading = getCurrentReading();
 
