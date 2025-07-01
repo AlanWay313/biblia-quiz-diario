@@ -1,8 +1,7 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useBibleChallenge } from '@/hooks/useBibleChallenge';
-import { Book, Calendar, Check, Quiz } from 'lucide-react';
+import { Book, Calendar, Check, HelpCircle } from 'lucide-react';
 
 const Dashboard = () => {
   const { participants, currentParticipant, getParticipantRanking } = useBibleChallenge();
@@ -68,7 +67,7 @@ const Dashboard = () => {
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
-              <Quiz className="h-4 w-4" />
+              <HelpCircle className="h-4 w-4" />
               Pontuação Média
             </CardTitle>
           </CardHeader>

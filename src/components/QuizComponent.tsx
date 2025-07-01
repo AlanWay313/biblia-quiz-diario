@@ -1,10 +1,9 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useBibleChallenge } from '@/hooks/useBibleChallenge';
-import { Quiz, Check, Book } from 'lucide-react';
+import { HelpCircle, Check, Book } from 'lucide-react';
 
 interface QuizComponentProps {
   bookId: string;
@@ -24,7 +23,7 @@ const QuizComponent = ({ bookId, chapter, onComplete }: QuizComponentProps) => {
     return (
       <Card>
         <CardContent className="text-center py-8">
-          <Quiz className="h-16 w-16 mx-auto mb-4 text-gray-400" />
+          <HelpCircle className="h-16 w-16 mx-auto mb-4 text-gray-400" />
           <p className="text-gray-600">Quiz ainda não disponível para este capítulo.</p>
         </CardContent>
       </Card>

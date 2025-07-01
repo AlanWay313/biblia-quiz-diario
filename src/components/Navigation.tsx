@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Book, Calendar, Quiz, Book as BookIcon } from 'lucide-react';
+import { Book, Calendar, HelpCircle, Book as BookIcon } from 'lucide-react';
 
 interface NavigationProps {
   currentView: string;
@@ -12,7 +12,7 @@ const Navigation = ({ currentView, onViewChange }: NavigationProps) => {
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: Calendar },
     { id: 'participants', label: 'Participantes', icon: BookIcon },
-    { id: 'quiz', label: 'Quiz Diário', icon: Quiz },
+    { id: 'quiz', label: 'Quiz Diário', icon: HelpCircle },
     { id: 'books', label: 'Livros', icon: Book }
   ];
 
